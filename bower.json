@@ -2,8 +2,7 @@
     "name": "fs-angular-model",
     "description": "",
     "main": [
-        "dist/model.js",
-        "dist/model.css"
+        "dist/model.js"
     ],
     "authors": [
         "Firestitch Inc."

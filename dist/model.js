@@ -1,3 +1,4 @@
+
 (function () {
     'use strict';
 
@@ -47,3 +48,12 @@
         }
 	});
 })();
+
+angular.module('fs-angular-model').run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('views/directives/template.html',
+    "fs-angular template"
+  );
+
+}]);
