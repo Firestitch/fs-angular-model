@@ -14,7 +14,12 @@
 
 			var value = self.get();
 
-			if (value !== self.value) {
+			if(value!==self.value) {
+
+				if(moment && moment.isMoment(value) && moment.isMoment(self.value) && value.isSame(self.value)) {
+					return value;
+				}
+
 			  	self.value = value;
 			  	self.render();
 			}
