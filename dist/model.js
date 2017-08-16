@@ -4,24 +4,28 @@
 
 	fsModel.$inject = ['$scope', '$attrs', '$parse'];
 	function fsModel($scope, $attr, $parse) {
-		this.value = Number.NaN;
+
 		this.$attr = $attr;
 		this.$scope = $scope;
 		this.$parse = $parse;
+		this.modelValue = NaN;
+		this.viewValue = NaN;
 
 		var self = this;
+
 		$scope.$watch(function() {
 
 			var value = self.get();
 
-			if(value!==self.value) {
+			if(value!==self.modelValue) {
 
-				if(moment && moment.isMoment(value) && moment.isMoment(self.value) && value.isSame(self.value)) {
+				if(typeof moment !== 'undefined' && moment.isMoment(value) && moment.isMoment(self.value) && value.isSame(self.value)) {
 					return value;
 				}
 
-			  	self.value = value;
-			  	self.render();
+				self.modelValue = value;
+				self.viewValue = value;
+				self.render();
 			}
 
 			return value;
@@ -37,7 +41,14 @@
 	    },
 	    render: function() {},
 	    commit: function() {
-	    	this.set(this.value);
+	    	this.set(this.viewValue);
+	    	this.modelValue = this.viewValue;
+	    },
+	    value: function(value) {
+	    	if(!arguments.length) {
+	    		return this.viewValue;
+	    	}
+	    	this.viewValue = value;
 	    }
 	};
 
