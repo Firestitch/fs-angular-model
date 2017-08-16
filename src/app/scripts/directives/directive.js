@@ -24,7 +24,7 @@
 
 				self.modelValue = value;
 				self.viewValue = value;
-				self.render();
+				self.watch(value);
 			}
 
 			return value;
@@ -38,7 +38,7 @@
 	    set: function(value) {
 	        this.$parse(this.$attr.fsModel).assign(this.$scope, value);
 	    },
-	    render: function() {},
+	    watch: function(value) {},
 	    commit: function() {
 	    	this.set(this.viewValue);
 	    	this.modelValue = this.viewValue;
@@ -56,10 +56,7 @@
 		return {
 			restrict: 'A',
 			controller: fsModel,
-			priority: 1,
-			link: function ($scope, element, attr, ctrls) {
-
-			}
+			priority: 1
         }
 	});
 })();
